@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>yelp sucks</title>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/styles/mdb.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/styles/restaurant-picker.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../scripts/routes/users.js"></script>
+    <script src="../scripts/routes/restaurants.js"></script>
+    <script src="../scripts/routes/lists.js"></script>
+    <script src="../scripts/templates/restaurantHeadline.js"></script>
+    <script src="../scripts/templates/addToList.js"></script>
+    <script src="../app.js"></script>
+    <script defer src="../scripts/render/create.js"></script>
+
+  </head>
+  <body>
+    <div class="container-fluid instructions py-3">
+      <h1 class="headline text-center">eat your way through the best of s<span>eat</span>tle</h1>
+      <p class="instruct text-center text-white">start your journey by selecting at least three restaurants to add to your list</p>
+    </div>
+    <div class="container-fluid top-of-page">
+      <div class="row options d-flex flex-nowrap">
+        <div class="left d-flex align-items-center">
+          <i id="left" class="fa fa-arrow-left py-3 pr-5 text-right" aria-hidden="true"></i>
+        </div>
+        <div class="container rest d-flex flex-column">
+          <div id="restaurant" class="center d-flex justify-content-between">
+            <!-- <div class="d-flex rest1 flex-column justify-content-between mx-3 my-2">
+              <h2 id="name" class="text-white mt-1">Che Sara Sara</h2>
+              <div class="d-flex mb-2">
+                <p class="text-white mr-2">cuisine:</p>
+                <p id="cuisine" class="text-white">italian</p>
+              </div>
+              <div class="d-flex mb-2">
+                <p class="text-white mr-2">neighborhood:</p>
+                <p id="neighborhood" class="text-white">pioneer square</p>
+              </div>
+            </div>
+            <div class="d-flex rest2 flex-column justify-content-between mt-2 mb-0">
+              <div class="d-flex flex-wrap justify-content-start">
+                <p class="tag px-2 ml-1 mr-3 my-1 text-white">best in class</p>
+                <p class="tag px-2 ml-1 mr-3 my-1 text-white">hidden gem</p>
+                <p class="tag px-2 ml-1 mr-3 my-1 text-white">hidden gem</p>
+                <p class="tag px-2 ml-1 mr-3 my-1 text-white">hidden gem</p>
+              </div>
+              <div class="d-flex px-2 mt-3">
+                <p class="mr-2 text-white">price:</p>
+                <i class="fa fa-dollar text-white mr-2" aria-hidden="true"></i><i class="fa fa-dollar text-white mr-2" aria-hidden="true"></i><i class="fa fa-dollar text-white mr-2" aria-hidden="true"></i>
+              </div>
+              <button type="button" class="btn btn-blue waves-effect mb-2">add to list</button>
+            </div> -->
+          </div>
+          <button type="button" id="add" class="btn btn-blue waves-effect mx-0">add to list</button>
+        </div>
+        <div class="right d-flex align-items-center">
+          <i id="right" class="fa fa-arrow-right py-3 pl-5 text-left" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="container lists">
+      <div id="list">
+        <table class="table table-hover">
+          <tbody id="table-body">
+            <!-- <tr>
+              <th scope="row"></th>
+              <td class="name">Bar del Corso</td>
+              <td><i class="fa fa-dollar" aria-hidden="true"></i><i class="fa fa-dollar" aria-hidden="true"></i></td>
+              <td align="center"><button type="button" class="btn btn-outline-pink waves-effect btn-sm">remove</button></td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td class="name">Lost Lake</td>
+              <td><i class="fa fa-dollar" aria-hidden="true"></i>  <i class="fa fa-dollar" aria-hidden="true"></i></td>
+              <td align="center"><button type="button" class="btn btn-outline-pink waves-effect btn-sm">remove</button></td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td class="name">Damn the Weather</td>
+              <td><i class="fa fa-dollar" aria-hidden="true"></i>  <i class="fa fa-dollar" aria-hidden="true"></i></td>
+              <td align="center"><button type="button" class="btn btn-outline-pink waves-effect btn-sm">remove</button></td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td class="name">Damn the Weather</td>
+              <td><i class="fa fa-dollar" aria-hidden="true"></i>  <i class="fa fa-dollar" aria-hidden="true"></i></td>
+              <td align="center"><button type="button" class="btn btn-outline-pink waves-effect btn-sm">remove</button></td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td class="name">Damn the Weather</td>
+              <td><i class="fa fa-dollar" aria-hidden="true"></i>  <i class="fa fa-dollar" aria-hidden="true"></i></td>
+              <td align="center"><button type="button" class="btn btn-outline-pink waves-effect btn-sm">remove</button></td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td class="name">Damn the Weather</td>
+              <td><i class="fa fa-dollar" aria-hidden="true"></i>  <i class="fa fa-dollar" aria-hidden="true"></i></td>
+              <td align="center"><button type="button" class="btn btn-outline-pink waves-effect btn-sm">remove</button></td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td class="name">Damn the Weather</td>
+              <td><i class="fa fa-dollar" aria-hidden="true"></i>  <i class="fa fa-dollar" aria-hidden="true"></i></td>
+              <td align="center"><button type="button" class="btn btn-outline-pink waves-effect btn-sm">remove</button></td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td class="name">Damn the Weather</td>
+              <td><i class="fa fa-dollar" aria-hidden="true"></i>  <i class="fa fa-dollar" aria-hidden="true"></i></td>
+              <td align="center"><button type="button" class="btn btn-outline-pink waves-effect btn-sm">remove</button></td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td class="name">Damn the Weather</td>
+              <td><i class="fa fa-dollar" aria-hidden="true"></i>  <i class="fa fa-dollar" aria-hidden="true"></i></td>
+              <td align="center"><button type="button" class="btn btn-outline-pink waves-effect btn-sm">remove</button></td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td class="name">Damn the Weather</td>
+              <td><i class="fa fa-dollar" aria-hidden="true"></i>  <i class="fa fa-dollar" aria-hidden="true"></i></td>
+              <td align="center"><button type="button" class="btn btn-outline-pink waves-effect btn-sm">remove</button></td>
+            </tr> -->
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="footer container-fluid d-flex justify-content-center">
+      <div class="footer-content d-flex align-items-center justify-content-around py-3">
+        <h5 class="text-white my-0">progress:</h5>
+        <i id="progress1" class="fa fa-circle-o my-0" aria-hidden="true"></i>
+        <i id="progress2" class="fa fa-circle-o my-0" aria-hidden="true"></i>
+        <i id="progress3" class="fa fa-circle-o my-0" aria-hidden="true"></i>
+        <button type="button" id="finish" class="btn btn-pink waves-effect my-0" disabled>finish</button>
+      </div>
+
+    </div>
+    <script type="text/javascript" src="../assets/js/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="../assets/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../assets/js/mdb.min.js"></script>
+  </body>
+</html>

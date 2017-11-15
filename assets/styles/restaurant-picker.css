@@ -1,0 +1,176 @@
+/*blue- #2196f3*/
+/*pink - #df3d73*/
+
+body{
+  font-size: 16px;
+  box-sizing: border-box;
+  min-height: 100%;
+}
+
+.instructions{
+  background-color: #df3d73;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.headline{
+  color: #fff;
+}
+
+.headline span{
+  color: #000;
+}
+
+.top-of-page{
+  position: sticky;
+  top: 128px;
+  z-index: 6;
+}
+
+.rest{
+  padding: 0 !important;
+  border-bottom: 1px solid lightgrey;
+
+}
+
+#restaurant{
+  height: 20vh;
+  background-image: url("/assets/images/dave-michuda-54058.jpg");
+  background-position: middle;
+  /*background-color: #2196f3;*/
+  overflow: visible;
+  padding-right: 5rem;
+  padding-left: 5rem;
+}
+
+#name{
+  text-decoration: overline;
+  color: #df3d73;
+}
+
+.rest1{
+  max-width: 70%;
+}
+
+.rest2{
+  max-width: 30%;
+
+}
+
+.tag{
+  border: 2px #fff solid;
+  font-size: .8rem;
+}
+
+#description{
+  font-size: .9rem;
+  line-height: 1.3;
+  margin-bottom: 0;
+}
+
+.left, .right{
+  width: 15%;
+  border-bottom: 1px solid lightgrey;
+  flex-grow: 1;
+  margin: 0;
+}
+
+#left, #right{
+  width: 100%;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 6rem;
+  color: #2196f3;
+  cursor: pointer;
+}
+
+.lists{
+  padding: 0 !important;
+}
+
+td{
+  font-size: 1.4rem;
+  vertical-align: middle !important;
+  height: 5rem;
+}
+
+.price{
+  color:#000;
+}
+
+.name{
+  color: grey;
+  font-weight: bold;
+}
+
+.footer{
+  padding: 0 !important;
+  background-color: #2196f3;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+}
+
+.footer-content{
+  width: 40%;
+}
+
+.footer .fa{
+  font-size: 2rem;
+  color: #fff;
+}
+
+/*#finish{
+
+}*/
+
+
+@media screen and (max-width: 932px) {
+  body{
+    font-size: 12px;
+  }
+
+  h1{
+    font-size: 2rem;
+  }
+
+  #left, #right{
+    font-size: 3rem;
+  }
+
+  .left, .right, #restaurant{
+    border: none;
+  }
+
+  #name{
+    font-size: 1.8rem;
+  }
+
+  .footer-content{
+    width: 100%;
+  }
+
+  .footer h5{
+    display: none;
+  }
+
+  .footer .fa{
+    font-size: 1rem;
+  }
+
+  .footer button{
+    width: 8rem !important;
+  }
+
+  #description{
+    display: none
+  }
+
+  .tag{
+    display: none;
+  }
+
+}
