@@ -33,7 +33,7 @@ a{
 }
 
 .restaurant{
-  background-image: url("/assets/images/picture1.png");
+  background-image: url("../assets/images/picture1.png");
   background-position: bottom;
   background-size: cover;
 }

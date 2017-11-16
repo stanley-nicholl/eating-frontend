@@ -6,8 +6,6 @@ let userRestaurantList = []
 let userId
 let storedRestaurantList = []
 
-Lists.get
-
 function pageLoad(){
   Users.getUser(localStorage.getItem('username'))
     .then(user => {

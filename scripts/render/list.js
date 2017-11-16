@@ -4,10 +4,6 @@ let userId
 const notVisitedCoord = []
 const visitedCoord = []
 
-
-
-
-
 Users.getUser(localStorage.getItem('username'))
   .then(user => {
     userId = user.data.user[0].id
