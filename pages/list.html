@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>yelp sucks</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/styles/mdb.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/styles/list.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.min.js"></script>
+    <script src="../scripts/routes/users.js"></script>
+    <script src="../scripts/routes/restaurants.js"></script>
+    <script src="../scripts/routes/lists.js"></script>
+    <script src="../scripts/templates/populateLists.js"></script>
+    <script src="../app.js"></script>
+    <script defer src="../scripts/render/list.js"></script>
+
+  </head>
+  <body>
+    <div class="top">
+    <nav class="navbar navbar pink">
+      <div class="container">
+        <div class="navdiv d-flex justify-content-between align-items-center">
+          <div>
+            <h1 class="text-white my- py-0">S<span class="logo">EAT</span>TLE</h1>
+          </div>
+          <div class="d-flex align-items-center">
+            <p class="text-white mr-3 my-0 py-0">Hello, <span id="user" class="text-white font-weight-bold"></span></p>
+            <div class="score d-flex align-items-center justify-content-center">
+              <p id="score" class="text-white my-0 mx-0 py-0 px-0"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid top-of-page mb-0">
+      <h3 class="headline text-center py-3">your list to help you eat your way through seattle</h3>
+      <p class="instruct text-center text-white pb-4 mb-0">see the number top right...yeah, those are your points, keep going!</p>
+    </div>
+
+    <div class="container-fluid d-flex justify-content-center toggle">
+      <div class="switch py-2 mt-0">
+        <label class="text-white">
+          list view
+          <input id="switch" type="checkbox">
+          <span class="lever"></span>
+          map view
+        </label>
+      </div>
+    </div>
+    </div>
+    <div class="container lists">
+      <div id="list">
+        <div class="container mx-0 mt-3 px-0">
+          <h4 class="text-center todo-break py-1">RESTAURANTS TO TRY</h4>
+        </div>
+        <table class="table table-hover">
+          <col width="20%">
+          <col width="20%">
+          <col width="20%">
+          <col width="20%">
+          <col width="20%">
+            <thead>
+              <tr class="todo">
+                <th class="todo">Restaurant</th>
+                <th class="todo">Neighborhood</th>
+                <th class="todo">Cuisine</th>
+                <th class="todo">Cost</th>
+                <th class="text-center todo">Action</th>
+              </tr>
+            </thead>
+            <tbody id="not-completed-table">
+            <!-- <tr>
+              <td>Lost Lake</td>
+              <td>cap hill</td>
+              <td>americana</td>
+              <td><i class="fa fa-dollar" aria-hidden="true"></i>  <i class="fa fa-dollar" aria-hidden="true"></i></td>
+              <td align="center"><button type="button" class="btn btn-outline-pink waves-effect btn-sm">review</button></td>
+            </tr>
+            <tr>
+              <td>Damn the Weather</td>
+              <td>cap hill</td>
+              <td>americana</td>
+              <td><i class="fa fa-dollar" aria-hidden="true"></i>  <i class="fa fa-dollar" aria-hidden="true"></i></td>
+              <td align="center"><button type="button" class="btn btn-outline-pink waves-effect btn-sm">review</button></td>
+            </tr>
+            <tr>
+              <td>Damn the Weather</td>
+              <td>cap hill</td>
+              <td>americana</td>
+              <td><i class="fa fa-dollar" aria-hidden="true"></i>  <i class="fa fa-dollar" aria-hidden="true"></i></td>
+              <td align="center"><button type="button" class="btn btn-outline-pink waves-effect btn-sm">how was it?</button></td>
+            </tr> -->
+          </tbody>
+        </table>
+        <div class="container mx-0 px-0">
+          <h4 class="text-center done-break py-1">VISITED RESTAURANTS</h4>
+        </div>
+        <table class="table table-hover">
+          <col width="20%">
+          <col width="20%">
+          <col width="20%">
+          <col width="20%">
+          <col width="20%">
+          <thead>
+            <tr class="todo">
+              <th class="done">Restaurant</th>
+              <th class="done">Neighborhood</th>
+              <th class="done">Date Visited</th>
+              <th class="done">Recommended</th>
+              <th class="text-center done">Action</th>
+            </tr>
+          </thead>
+          <tbody id="completed-table">
+            <!-- <tr>
+              <td>Damn the Weather</td>
+              <td>cap hill</td>
+              <td>10/22/2017</td>
+              <td>not recommended</td>
+              <td align="center"><button type="button" class="btn btn-outline-blue waves-effect btn-sm">remember how it was</button></td>
+            </tr>
+            <tr>
+              <td>Damn the Weather</td>
+              <td>cap hill</td>
+              <td class="name">10/22/2017</td>
+              <td>recommended</td>
+              <td align="center"><button type="button" class="btn btn-outline-blue waves-effect btn-sm">review</button></td>
+            </tr>
+            <tr>
+              <td>Hello the Weather</td>
+              <td>cap hill</td>
+              <td>10/22/2017</td>
+              <td>recommended</td>
+              <td align="center"><button type="button" class="btn btn-outline-blue waves-effect btn-sm">review</button></td>
+            </tr> -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="footer container-fluid d-flex justify-content-center">
+      <div class="footer-content d-flex align-items-center justify-content-around py-3">
+        <button type="button" id="addmore" class="btn btn-pink waves-effect my-0 py-2">add more restaurants!</button>
+      </div>
+
+    </div>
+    <script type="text/javascript" src="../assets/js/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="../assets/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../assets/js/mdb.min.js"></script>
+  </body>
+</html>

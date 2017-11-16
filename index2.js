@@ -17,6 +17,6 @@ document.getElementById('login').addEventListener('click', (event) => {
       }
       const userName = user.data.user[0].email
       localStorage.setItem('username', userName)
-      window.location.replace('../pages/index.html')
+      window.location.replace('../pages/list.html')
     })
 })

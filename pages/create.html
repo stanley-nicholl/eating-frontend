@@ -5,32 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>yelp sucks</title>
-    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/styles/mdb.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../assets/styles/restaurant-picker.css">
+    <link rel="stylesheet" href="../assets/styles/create.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="../scripts/routes/users.js"></script>
     <script src="../scripts/routes/restaurants.js"></script>
     <script src="../scripts/routes/lists.js"></script>
     <script src="../scripts/templates/restaurantHeadline.js"></script>
     <script src="../scripts/templates/addToList.js"></script>
+    <script src="../scripts/templates/addbutton.js"></script>
     <script src="../app.js"></script>
     <script defer src="../scripts/render/create.js"></script>
 
   </head>
   <body>
-    <div class="container-fluid instructions py-3">
-      <h1 class="headline text-center">eat your way through the best of s<span>eat</span>tle</h1>
-      <p class="instruct text-center text-white">start your journey by selecting at least three restaurants to add to your list</p>
+    <div class="top">
+
+
+    <nav class="navbar navbar pink">
+      <div class="container">
+        <div class="navdiv d-flex justify-content-between align-items-center">
+          <div>
+            <h1 class="text-white my- py-0">S<span class="logo">EAT</span>TLE</h1>
+          </div>
+          <div class="d-flex align-items-center">
+            <p class="text-white mr-3 my-0 py-0">Hello, <span id="user" class="text-white font-weight-bold"></span></p>
+            <div class="score d-flex align-items-center justify-content-center">
+              <p id="score" class="text-white my-0 mx-0 py-0 px-0"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid top-of-page mb-0">
+      <h3 class="headline text-center py-3">eat your way through the best of s<span>eat</span>tle</h3>
+      <p class="instruct text-center text-white pb-4 mb-0">make sure to keep at least three restaurants on your list...we made a cool progress bar just for you at the bottom of the page.</p>
+    </div>
     </div>
     <div class="container-fluid top-of-page">
       <div class="row options d-flex flex-nowrap">
-        <div class="left d-flex align-items-center">
-          <i id="left" class="fa fa-arrow-left py-3 pr-5 text-right" aria-hidden="true"></i>
+        <div class="left d-flex flex-column align-items-center">
+          <i id="left" class="fa fa-arrow-left pt-5 pb-3 text-center" aria-hidden="true"></i>
+          <small>see last restaurant</small>
         </div>
         <div class="container rest d-flex flex-column">
           <div id="restaurant" class="center d-flex justify-content-between">
@@ -59,10 +78,11 @@
               <button type="button" class="btn btn-blue waves-effect mb-2">add to list</button>
             </div> -->
           </div>
-          <button type="button" id="add" class="btn btn-blue waves-effect mx-0">add to list</button>
+          <button type="button" id="add" class="btn btn-pink waves-effect mx-0"></button>
         </div>
-        <div class="right d-flex align-items-center">
-          <i id="right" class="fa fa-arrow-right py-3 pl-5 text-left" aria-hidden="true"></i>
+        <div class="right d-flex flex-column align-items-center">
+          <i id="right" class="fa fa-arrow-right pt-5 pb-3 text-center" aria-hidden="true"></i>
+          <small>see next restaurant</small>
         </div>
       </div>
     </div>
@@ -70,6 +90,7 @@
       <div id="list">
         <table class="table table-hover">
           <tbody id="table-body">
+            <div id="alert"></div>
             <!-- <tr>
               <th scope="row"></th>
               <td class="name">Bar del Corso</td>

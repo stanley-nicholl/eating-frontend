@@ -1,11 +1,11 @@
 function addRow(restaurant){
-  let { name, cost } = restaurant
+  let { name, cost, id } = restaurant
   return `
-  <tr>
+  <tr id="tr${id}">
     <th scope="row"></th>
     <td class="name">${name}</td>
     <td class="price">${populateListItemPrice(cost)}</td>
-    <td align="center"><button type="button" class="btn btn-outline-pink waves-effect btn-sm">remove</button></td>
+    <td align="center"><button type="button" id="${id}" class="btn btn-outline-pink waves-effect btn-sm remove">remove</button></td>
   </tr>
   `
 }

@@ -7,25 +7,43 @@ body{
   min-height: 100%;
 }
 
-.instructions{
-  background-color: #df3d73;
+.top{
   position: sticky;
   top: 0;
   z-index: 5;
 }
 
-.headline{
-  color: #fff;
+.navdiv{
+  width: 100vw;
 }
 
-.headline span{
+.logo{
   color: #000;
 }
 
+.score{
+  background-color: #000;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 1rem;
+}
+
+.headline{
+  color: #fff;
+  background-color: #000;
+}
+
+.headline span{
+  color: #df3d73;
+}
+
 .top-of-page{
-  position: sticky;
-  top: 128px;
-  z-index: 6;
+  background-color: #000;
+  color: #fff;
+}
+
+.options{
+  background-color: #fff;
 }
 
 .rest{
@@ -36,12 +54,11 @@ body{
 
 #restaurant{
   height: 20vh;
-  background-image: url("/assets/images/dave-michuda-54058.jpg");
+  background-image: url("/assets/images/picture1.png");
   background-position: middle;
   /*background-color: #2196f3;*/
   overflow: visible;
-  padding-right: 5rem;
-  padding-left: 5rem;
+  padding: 3rem;
 }
 
 #name{
@@ -60,7 +77,7 @@ body{
 
 .tag{
   border: 2px #fff solid;
-  font-size: .8rem;
+  font-size: 1rem;
 }
 
 #description{
@@ -85,6 +102,10 @@ body{
   cursor: pointer;
 }
 
+small{
+  color: #2196f3;
+}
+
 .lists{
   padding: 0 !important;
 }
@@ -102,6 +123,22 @@ td{
 .name{
   color: grey;
   font-weight: bold;
+}
+
+.flashit{
+  color:#f2f;
+	-webkit-animation: flash linear 1s 3;
+	animation: flash linear 1s 3;
+}
+@-webkit-keyframes flash {
+	0% { opacity: 1; }
+	50% { opacity: .1; }
+	100% { opacity: 1; }
+}
+@keyframes flash {
+	0% { opacity: 1; }
+	50% { opacity: .1; }
+	100% { opacity: 1; }
 }
 
 .footer{

@@ -19,7 +19,7 @@ document.getElementById('signup').addEventListener('click', (event) => {
       }
       userName = user.data.user[0].email
       localStorage.setItem('username', userName)
-      window.location.replace('../pages/initialListCreator.html')
+      window.location.replace('../pages/create.html')
     })
 })
 
