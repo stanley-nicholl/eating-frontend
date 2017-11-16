@@ -1,6 +1,12 @@
 const userListVisited = []
 const userListNotVisited = []
 let userId
+const notVisitedCoord = []
+const visitedCoord = []
+
+
+
+
 
 Users.getUser(localStorage.getItem('username'))
   .then(user => {
@@ -22,6 +28,12 @@ function getData(user){
         }else{
           userListNotVisited.push(item)
         }
+      })
+      userListVisited.forEach(item => {
+        visitedCoord.push({latitude: item.latitude, logitude: item.longitude})
+      })
+      userListNotVisited.forEach(item => {
+        notVisitedCoord.push({latitude: item.latitude, logitude: item.longitude})
       })
       loadPage()
     })

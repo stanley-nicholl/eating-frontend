@@ -35,7 +35,7 @@ function populateTags(tags){
 function populatePrice(price){
   let response = ``
   for (var i = 0; i < price.length; i++) {
-    response += `<i class="fa fa-dollar text-white mr-2" aria-hidden="true"></i>`
+    response += `<i class="fa fa-dollar text-white mr-2 mt-1" aria-hidden="true"></i>`
   }
   return response
 }

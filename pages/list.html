@@ -12,13 +12,16 @@
     <link rel="stylesheet" href="../assets/styles/list.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.min.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDn2PXO_Z83dEy66HIRxb1IY02hRIOn4zk&callback=initMap">
+    </script>
     <script src="../scripts/routes/users.js"></script>
     <script src="../scripts/routes/restaurants.js"></script>
     <script src="../scripts/routes/lists.js"></script>
     <script src="../scripts/templates/populateLists.js"></script>
     <script src="../app.js"></script>
     <script defer src="../scripts/render/list.js"></script>
-
+    <script defer src="../scripts/render/list-map.js"></script>
   </head>
   <body>
     <div class="top">
@@ -74,27 +77,6 @@
               </tr>
             </thead>
             <tbody id="not-completed-table">
-            <!-- <tr>
-              <td>Lost Lake</td>
-              <td>cap hill</td>
-              <td>americana</td>
-              <td><i class="fa fa-dollar" aria-hidden="true"></i>  <i class="fa fa-dollar" aria-hidden="true"></i></td>
-              <td align="center"><button type="button" class="btn btn-outline-pink waves-effect btn-sm">review</button></td>
-            </tr>
-            <tr>
-              <td>Damn the Weather</td>
-              <td>cap hill</td>
-              <td>americana</td>
-              <td><i class="fa fa-dollar" aria-hidden="true"></i>  <i class="fa fa-dollar" aria-hidden="true"></i></td>
-              <td align="center"><button type="button" class="btn btn-outline-pink waves-effect btn-sm">review</button></td>
-            </tr>
-            <tr>
-              <td>Damn the Weather</td>
-              <td>cap hill</td>
-              <td>americana</td>
-              <td><i class="fa fa-dollar" aria-hidden="true"></i>  <i class="fa fa-dollar" aria-hidden="true"></i></td>
-              <td align="center"><button type="button" class="btn btn-outline-pink waves-effect btn-sm">how was it?</button></td>
-            </tr> -->
           </tbody>
         </table>
         <div class="container mx-0 px-0">
@@ -116,30 +98,10 @@
             </tr>
           </thead>
           <tbody id="completed-table">
-            <!-- <tr>
-              <td>Damn the Weather</td>
-              <td>cap hill</td>
-              <td>10/22/2017</td>
-              <td>not recommended</td>
-              <td align="center"><button type="button" class="btn btn-outline-blue waves-effect btn-sm">remember how it was</button></td>
-            </tr>
-            <tr>
-              <td>Damn the Weather</td>
-              <td>cap hill</td>
-              <td class="name">10/22/2017</td>
-              <td>recommended</td>
-              <td align="center"><button type="button" class="btn btn-outline-blue waves-effect btn-sm">review</button></td>
-            </tr>
-            <tr>
-              <td>Hello the Weather</td>
-              <td>cap hill</td>
-              <td>10/22/2017</td>
-              <td>recommended</td>
-              <td align="center"><button type="button" class="btn btn-outline-blue waves-effect btn-sm">review</button></td>
-            </tr> -->
           </tbody>
         </table>
       </div>
+      <div id="map"></div>
     </div>
     <div class="footer container-fluid d-flex justify-content-center">
       <div class="footer-content d-flex align-items-center justify-content-around py-3">

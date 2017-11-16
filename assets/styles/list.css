@@ -59,11 +59,17 @@ body{
   color: #fff;
 }
 
+/*MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP*/
+#map{
+  height: 400px;
+  width: 100%;
+  display: none;
+}
 
 .footer{
   padding: 0 !important;
   background-color: #2196f3;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   z-index: 5;
 }

@@ -15,8 +15,6 @@ Users.getUser(localStorage.getItem('username'))
     getData(userId)
   })
 
-
-
 function getData(user){
   Lists.getList(user)
     .then(list => {
@@ -31,7 +29,11 @@ function getData(user){
 }
 
 function loadPage(listing) {
-  document.getElementById('restaurant').innerHTML = populateRestaurant(listing)
+  Restaurants.getRestaurant(restId)
+    .then(result => {
+      const rest = result.data.restaurant[0]
+      document.getElementById('restaurant').innerHTML = populateRestaurant(rest)
+    })
   if(listing.completed === true){
     document.getElementById('form').innerHTML = updateForm(listing)
     fixFieldState()
@@ -41,7 +43,6 @@ function loadPage(listing) {
     $('#date_completed').focusin()
   }
   $('.datepicker').pickadate();
-  console.log(userIntel[0].email);
   document.getElementById('back').addEventListener('click', (event) => {
     event.preventDefault()
     window.location.replace('./list.html')

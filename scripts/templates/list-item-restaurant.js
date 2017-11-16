@@ -1,5 +1,5 @@
-function populateRestaurant(lising){
-  const { name, description, website, neighborhood, cost, cuisine, street_address, city, state, zip, tags } = listing
+function populateRestaurant(restaurant){
+  const { name, description, website, neighborhood, cost, cuisine, street_address, city, state, zip, categories } = restaurant
   return `
   <div class="overview d-flex flex-column justify-content-between ml-3">
     <h2 id="name" class="mb-5">${name}</h2>
@@ -14,9 +14,7 @@ function populateRestaurant(lising){
   </div>
   <div class="industry d-flex flex-column justify-content-between">
     <div id="tags" class="d-flex flex-wrap mb-3 mt-2">
-      <p class="tag px-2 ml-1 mr-3 my-1 text-white">xxx</p>
-      <p class="tag px-2 ml-1 mr-3 my-1 text-white">xxx</p>
-      <p class="tag px-2 ml-1 mr-3 my-1 text-white">xxx</p>
+      ${populateTags(categories)}
     </div>
     <div class="d-flex flex-wrap mb-3">
       <div id="cost" class="d-flex">
@@ -34,7 +32,7 @@ function populateRestaurant(lising){
 function populateTags(tags){
   let response = ``
   tags.forEach(tag => {
-    response += `<p class="tag px-2 ml-1 mr-3 my-1 text-white">${tag.name}</p>`
+    response += `<p class="tag px-2 ml-1 mr-3 my-1 text-white">${tag}</p>`
   })
   return response
 }

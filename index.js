@@ -1,6 +1,6 @@
 let userName = localStorage.getItem('username')
 
-// if(userName) window.location.replace('./pages/index')
+if(userName) window.location.replace('./pages/list.html')
 
 document.getElementById('signup').addEventListener('click', (event) => {
   event.preventDefault()
@@ -14,12 +14,11 @@ document.getElementById('signup').addEventListener('click', (event) => {
   }
   return Users.createUser(body)
     .then(user => {
-      if(!user.data.userlength){
-        document.getElementById('error').textContent = 'username already exists'
-      }
       userName = user.data.user[0].email
       localStorage.setItem('username', userName)
       window.location.replace('../pages/create.html')
+    }).catch(err => {
+      document.getElementById('error').textContent = 'user already exists'
     })
 })
 

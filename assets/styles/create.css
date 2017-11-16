@@ -55,10 +55,9 @@ body{
 #restaurant{
   height: 20vh;
   background-image: url("/assets/images/picture1.png");
-  background-position: middle;
-  /*background-color: #2196f3;*/
+  background-position: center;
   overflow: visible;
-  padding: 3rem;
+  padding: 1rem;
 }
 
 #name{
@@ -80,12 +79,6 @@ body{
   font-size: 1rem;
 }
 
-#description{
-  font-size: .9rem;
-  line-height: 1.3;
-  margin-bottom: 0;
-}
-
 .left, .right{
   width: 15%;
   border-bottom: 1px solid lightgrey;
@@ -104,6 +97,18 @@ body{
 
 small{
   color: #2196f3;
+}
+
+.top-line{
+  color: #2196f3;
+}
+
+.hidden{
+  display: none;
+}
+
+#list{
+  padding-bottom: 60px;
 }
 
 .lists{
@@ -144,7 +149,7 @@ td{
 .footer{
   padding: 0 !important;
   background-color: #2196f3;
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 0;
   left: 0;

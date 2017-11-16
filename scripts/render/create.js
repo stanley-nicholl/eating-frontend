@@ -9,12 +9,6 @@ let storedRestaurantList = []
 Lists.get
 
 function pageLoad(){
-  Restaurants.getAllRestaurant()
-    .then(restaurants => {
-      restaurantList = restaurants.data.restaurants
-      document.getElementById('restaurant').innerHTML =  restaurantHeadline(restaurantList[index])
-      document.getElementById('add').textContent = addButton(restaurantList[index])
-    })
   Users.getUser(localStorage.getItem('username'))
     .then(user => {
       userId = user.data.user[0].id
@@ -27,8 +21,22 @@ function pageLoad(){
           })
           updateProgress()
         })
-
+        Restaurants.getAllRestaurant()
+          .then(restaurants => {
+            restaurantList = restaurants.data.restaurants
+            for (var i = 0; i < restaurantList.length; i++) {
+              for (var j = 0; j < storedRestaurantList.length; j++) {
+                if(restaurantList[i].name == storedRestaurantList[j].name){
+                  restaurantList.splice(i, 1)
+                }
+              }
+            }
+            document.getElementById('restaurant').innerHTML =  restaurantHeadline(restaurantList[index])
+            document.getElementById('add').textContent = addButton(restaurantList[index])
+          })
     })
+
+
 }
 
 pageLoad()
@@ -50,6 +58,7 @@ function topPage(){
       document.getElementById('restaurant').innerHTML = restaurantHeadline(restaurantList[index])
       document.getElementById('add').textContent = addButton(restaurantList[index])
     }else{
+      index = restaurantList.length-1
       document.getElementById('restaurant').innerHTML = restaurantHeadline(restaurantList[index])
       document.getElementById('add').textContent = addButton(restaurantList[index])
     }
@@ -63,6 +72,11 @@ function loadList(){
   })
   document.getElementById('table-body').innerHTML = list
   addListening()
+  if(userRestaurantList.length > 0){
+    $('.top-line').removeClass('hidden')
+  }else{
+    $('.top-line').addClass('hidden')
+  }
 }
 
 document.getElementById('right').addEventListener('click', () => {
@@ -81,13 +95,13 @@ document.getElementById('add').addEventListener('click', (event) => {
     const newRest = restaurantList[index].name
     for (var i = 0; i < userRestaurantList.length; i++) {
       if(userRestaurantList[i].name == newRest){
-        document.getElementById('alert').innerHTML = `<p class="font-weight-bold text-center mt-3">that restaurant already on your list...you must really want to go there</p>`
+        document.getElementById('alert').innerHTML = `<p class="font-weight-bold text-center mt-3">that restaurant is already added below...dang, you must really want to go there</p>`
         return null
       }
     }
     for (var i = 0; i < storedRestaurantList.length; i++) {
       if(storedRestaurantList[i].name == newRest){
-        document.getElementById('alert').innerHTML = `<p class="font-weight-bold text-center mt-3">that restaurant already on your list...you must really want to go there</p>`
+        document.getElementById('alert').innerHTML = `<p class="font-weight-bold text-center mt-3">that restaurant is already added below...dang, you must really want to go there</p>`
         return null
       }
     }
@@ -101,7 +115,6 @@ document.getElementById('add').addEventListener('click', (event) => {
 
 function updateProgress(){
   const progress = userRestaurantList.length + storedRestaurantList.length
-  console.log(progress);
   if(progress === 0){
     document.getElementById('progress1').className = `fa fa-circle-o my-0`
     document.getElementById('progress2').className = `fa fa-circle-o my-0`
@@ -120,7 +133,7 @@ function updateProgress(){
     document.getElementById('progress2').className = `fa fa-circle my-0`
     document.getElementById('progress3').className = `fa fa-circle my-0 flashit`
     $('#finish').prop('disabled', false)
-    $('#finish').addClass(`flashit`) 
+    $('#finish').addClass(`flashit`)
   }
 }
 
