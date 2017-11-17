@@ -55,14 +55,17 @@ function loadPage(listing) {
     const plates = document.getElementById('plates').value
     const updatedList = { user_id: userId, restaurant_id: restId, completed: true, recommend: recommend, date_completed: date, plates_eaten: plates, comment: comment }
     Lists.updateList(id, updatedList)
-    if(bumpScore === true){
-      let score = userIntel[0].score
-      score += 1
-      let user = {email: userIntel[0].email, id: userIntel[0].id, first_name: userIntel[0].first_name, last_name: userIntel[0].last_name, score: score}
-      Users.updateUser(userIntel[0].email, user)
-    }
-    window.location.replace('./list.html')
-  })
+      .then (result => {
+        if(bumpScore === true){
+          let score = userIntel[0].score
+          score += 1
+          let user = {email: userIntel[0].email, id: userIntel[0].id, first_name: userIntel[0].first_name, last_name: userIntel[0].last_name, score: score}
+          Users.updateUser(userIntel[0].email, user)
+        }
+        window.location.replace('./list.html')
+      })
+      })
+
 }
 
 function fixFieldState() {

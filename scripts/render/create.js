@@ -1,10 +1,11 @@
-let restaurantList
+let restaurantList = []
 let index = 0
 let direction = 'right'
 let progress = 0
 let userRestaurantList = []
 let userId
 let storedRestaurantList = []
+let result = []
 
 function pageLoad(){
   Users.getUser(localStorage.getItem('username'))
@@ -22,15 +23,21 @@ function pageLoad(){
         Restaurants.getAllRestaurant()
           .then(restaurants => {
             restaurantList = restaurants.data.restaurants
-            for (var i = 0; i < restaurantList.length; i++) {
-              for (var j = 0; j < storedRestaurantList.length; j++) {
-                if(restaurantList[i].name == storedRestaurantList[j].name){
-                  restaurantList.splice(i, 1)
-                }
-              }
-            }
-            document.getElementById('restaurant').innerHTML =  restaurantHeadline(restaurantList[index])
-            document.getElementById('add').textContent = addButton(restaurantList[index])
+
+            result = restaurantList.filter(({ name }) => {
+              return !storedRestaurantList.map(res => res.name).includes(name)
+            })
+
+
+            // for (var i = 0; i < restaurantList.length; i++) {
+            //   for (var j = 0; j < storedRestaurantList.length; j++) {
+            //     if(restaurantList[i].name === storedRestaurantList[j].name){
+            //       restaurantList.splice(i, 1)
+            //     }
+            //   }
+            // }
+            document.getElementById('restaurant').innerHTML =  restaurantHeadline(result[index])
+            document.getElementById('add').textContent = addButton(result[index])
           })
     })
 
@@ -43,22 +50,22 @@ function topPage(){
   if(direction === 'right'){
     index++
     if(index<restaurantList.length){
-      document.getElementById('restaurant').innerHTML = restaurantHeadline(restaurantList[index])
-      document.getElementById('add').textContent = addButton(restaurantList[index])
+      document.getElementById('restaurant').innerHTML = restaurantHeadline(result[index])
+      document.getElementById('add').textContent = addButton(result[index])
     }else{
       index = 0
-      document.getElementById('restaurant').innerHTML = restaurantHeadline(restaurantList[index])
-      document.getElementById('add').textContent = addButton(restaurantList[index])
+      document.getElementById('restaurant').innerHTML = restaurantHeadline(result[index])
+      document.getElementById('add').textContent = addButton(result[index])
     }
   }else{
     if(index !== 0){
       index--
-      document.getElementById('restaurant').innerHTML = restaurantHeadline(restaurantList[index])
-      document.getElementById('add').textContent = addButton(restaurantList[index])
+      document.getElementById('restaurant').innerHTML = restaurantHeadline(result[index])
+      document.getElementById('add').textContent = addButton(result[index])
     }else{
       index = restaurantList.length-1
-      document.getElementById('restaurant').innerHTML = restaurantHeadline(restaurantList[index])
-      document.getElementById('add').textContent = addButton(restaurantList[index])
+      document.getElementById('restaurant').innerHTML = restaurantHeadline(result[index])
+      document.getElementById('add').textContent = addButton(result[index])
     }
   }
 }
@@ -90,7 +97,7 @@ document.getElementById('left').addEventListener('click', () => {
 document.getElementById('add').addEventListener('click', (event) => {
   event.preventDefault()
   document.getElementById('alert').innerHTML = ``
-    const newRest = restaurantList[index].name
+    const newRest = result[index].name
     for (var i = 0; i < userRestaurantList.length; i++) {
       if(userRestaurantList[i].name == newRest){
         document.getElementById('alert').innerHTML = `<p class="font-weight-bold text-center mt-3">that restaurant is already added below...dang, you must really want to go there</p>`
@@ -103,7 +110,7 @@ document.getElementById('add').addEventListener('click', (event) => {
         return null
       }
     }
-    userRestaurantList.push(restaurantList[index])
+    userRestaurantList.push(result[index])
     loadList()
     direction = 'right'
     topPage()
@@ -159,5 +166,6 @@ document.getElementById('finish').addEventListener('click', (event) => {
     updateList.lists.push({ restaurant_id: list.id, user_id: userId, completed: false })
   })
   Lists.createList(updateList)
+  console.log(baseListURL);
   window.location.replace('./list.html')
 })

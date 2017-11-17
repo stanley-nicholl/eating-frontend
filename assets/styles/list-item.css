@@ -33,7 +33,7 @@ a{
 }
 
 .restaurant{
-  background-image: url("../assets/images/picture1.png");
+  background-image: url("../../assets/images/Picture1.png");
   background-position: bottom;
   background-size: cover;
 }
@@ -75,7 +75,7 @@ a{
 }
 
 form{
-  padding-bottom: 80px;
+  padding-bottom: 100px;
 }
 
 

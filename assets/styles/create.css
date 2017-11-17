@@ -54,7 +54,7 @@ body{
 
 #restaurant{
   height: 20vh;
-  background-image: url("../assets/images/picture1.png");
+  background-image: url("../../assets/images/Picture1.png");
   background-position: center;
   overflow: visible;
   padding: 1rem;
