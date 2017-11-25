@@ -64,11 +64,19 @@ h4{
 
 
 @media screen and (max-width: 500px) {
+  body{
+    font-size: 12px;
+  }
+
   h1{
-    font-size: 7rem;
+    font-size: 5rem;
   }
 
   .desc{
     font-size: .8rem;
+  }
+
+  .bottom{
+    width: 100%;
   }
 }
